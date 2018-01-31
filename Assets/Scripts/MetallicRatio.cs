@@ -1,16 +1,13 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class MetallicRatio : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+public static class MetallicRatio
+{
+	public static double GetRatio (int n)
+	{
+		return (n + Math.Sqrt(n * n + 4.0)) / 2.0;
 	}
 }
