@@ -14,7 +14,7 @@ public class PolygonData
 	public List<Vector2Double> verts;
 	public List<double> diagonals;
 
-	public PolygonData (int n)
+	public PolygonData (int n, double vectorScaling)
 	{
 		name = n.ToString() + "-gon";
 		this.n = n;
@@ -24,7 +24,7 @@ public class PolygonData
 		
 //		verts = new List<Vector2Double>(n);
 		verts = new List<Vector2Double>(diagonalCount + 2);
-		verts.Add(Vector2Double.up);
+		verts.Add(new Vector2Double(0.0, vectorScaling));
 		for (int vIndex = 1; vIndex < verts.Capacity; vIndex++)
 		{
 			Vector2Double newVector = verts[vIndex - 1].Rotate(exteriorAngle);
@@ -35,7 +35,7 @@ public class PolygonData
 			}
 			else if(vIndex > 1)
 			{
-				double dist = Vector2Double.Distance(verts[0], newVector) / sideLength;
+				double dist = Vector2Double.Distance(verts[0], newVector) / sideLength / vectorScaling;
 //				double dist = diagonals.Count + 1.0 + sideLength / Vector2Double.Distance(verts[0], newVector);
 				diagonals.Add(dist);
 			}
